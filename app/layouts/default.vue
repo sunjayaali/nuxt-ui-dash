@@ -20,9 +20,10 @@ const links = [
         {
           label: 'FileUpload',
           to: '/file-upload',
-          // onSelect: () => {
-          //   open.value = false
-          // },
+        },
+        {
+          label: 'Checkbox',
+          to: '/checkbox',
         },
       ],
     },
@@ -46,7 +47,10 @@ const links = [
 
 <template>
   <UDashboardGroup>
-    <UDashboardSidebar :ui="{ footer: 'border-t border-default' }" collapsible>
+    <UDashboardSidebar
+      :ui="{ footer: 'border-t border-default' }"
+      collapsible
+    >
       <template #toggle>
         <UDashboardSidebarToggle variant="subtle" />
       </template>
