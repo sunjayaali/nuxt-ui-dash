@@ -27,6 +27,16 @@ const links = [
         },
       ],
     },
+    {
+      label: 'Page',
+      defaultOpen: true,
+      children: [
+        {
+          label: 'Page',
+          to: '/page',
+        },
+      ],
+    },
   ],
   [
     {
@@ -47,16 +57,9 @@ const links = [
 
 <template>
   <UDashboardGroup>
-    <UDashboardSidebar
-      :ui="{ footer: 'border-t border-default' }"
-      collapsible
-    >
+    <UDashboardSidebar :ui="{ footer: 'border-t border-default' }" collapsible>
       <template #toggle>
         <UDashboardSidebarToggle variant="subtle" />
-      </template>
-
-      <template #header>
-        <UDashboardSidebarCollapse variant="subtle" />
       </template>
 
       <template #default="{ collapsed }">
@@ -71,7 +74,17 @@ const links = [
     </UDashboardSidebar>
 
     <UDashboardPanel>
-      <UDashboardNavbar />
+      <UDashboardNavbar>
+        <template #leading>
+          <UDashboardSidebarCollapse />
+        </template>
+
+        <template #trailing> trailing </template>
+
+        <template #right>
+          <UColorModeButton />
+        </template>
+      </UDashboardNavbar>
 
       <slot />
     </UDashboardPanel>
