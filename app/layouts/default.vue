@@ -35,6 +35,10 @@ const links = [
           label: 'Page',
           to: '/page',
         },
+        {
+          label: 'Page Header',
+          to: '/page-header',
+        },
       ],
     },
   ],
