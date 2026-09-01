@@ -86,6 +86,13 @@ const dropdownItems = ref<DropdownMenuItem[][]>([
   ],
   [
     {
+      label: 'Settings',
+      icon: 'i-lucide-settings',
+      to: '/settings',
+    },
+  ],
+  [
+    {
       label: 'Logout',
       icon: 'i-lucide-log-out',
       onSelect() {
@@ -160,9 +167,7 @@ const dropdownItems = ref<DropdownMenuItem[][]>([
 
         <template #trailing> trailing </template>
 
-        <template #right>
-          <UColorModeButton />
-        </template>
+        <template #right> </template>
       </UDashboardNavbar>
 
       <slot />
