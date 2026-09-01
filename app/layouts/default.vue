@@ -166,8 +166,6 @@ const dropdownItems = ref<DropdownMenuItem[][]>([
         </template>
 
         <template #trailing> trailing </template>
-
-        <template #right> </template>
       </UDashboardNavbar>
 
       <slot />

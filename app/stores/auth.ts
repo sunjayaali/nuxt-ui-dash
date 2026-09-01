@@ -3,7 +3,9 @@ import type { User } from '~/types/user'
 export const useAuthStore = defineStore('auth', () => {
   const { $authService } = useNuxtApp()
 
-  const user = useCookie<User | null>('auth_user')
+  const user = useCookie<User | null>('auth_user', {
+    default: () => null,
+  })
 
   const isAuthenticated = computed(() => user.value !== null)
 
