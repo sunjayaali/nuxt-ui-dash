@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import type { NavigationMenuItem } from '@nuxt/ui'
+import type { DropdownMenuItem, NavigationMenuItem } from '@nuxt/ui'
 
-const open = ref(false)
+const auth = useAuthStore()
+useAuthGuard()
 
 const links = [
   [
@@ -9,9 +10,6 @@ const links = [
       label: 'Home',
       icon: 'i-lucide-house',
       to: '/',
-      onSelect: () => {
-        open.value = false
-      },
     },
     {
       label: 'Form',
@@ -39,6 +37,14 @@ const links = [
           label: 'Page Header',
           to: '/page-header',
         },
+        {
+          label: 'Page Card',
+          to: '/page-card',
+        },
+        {
+          label: 'Page Grid',
+          to: '/page-grid',
+        },
       ],
     },
   ],
@@ -57,6 +63,35 @@ const links = [
     },
   ],
 ] satisfies NavigationMenuItem[][]
+
+const user = ref({
+  name: auth.user?.name,
+  avatar: {
+    src: 'https://picsum.photos/seed/picsum/200/300',
+    alt: auth.user?.name ?? '',
+  },
+})
+const dropdownItems = ref<DropdownMenuItem[][]>([
+  [
+    {
+      label: 'Benjamin',
+      avatar: {
+        src: 'https://github.com/benjamincanac.png',
+        loading: 'lazy',
+      },
+      type: 'label',
+    },
+  ],
+  [
+    {
+      label: 'Logout',
+      icon: 'i-lucide-log-out',
+      onSelect() {
+        auth.logout()
+      },
+    },
+  ],
+])
 </script>
 
 <template>
@@ -74,6 +109,41 @@ const links = [
           tooltip
           popover
         />
+
+        <UNavigationMenu
+          :collapsed="collapsed"
+          :items="links[1]"
+          orientation="vertical"
+          tooltip
+          class="mt-auto"
+        />
+      </template>
+
+      <template #footer="{ collapsed }">
+        <UDropdownMenu
+          :items="dropdownItems"
+          :ui="{
+            content: collapsed
+              ? 'w-48'
+              : 'w-(--reka-dropdown-menu-trigger-width)',
+          }"
+        >
+          <UButton
+            v-bind="{
+              ...user,
+              trailingIcon: collapsed ? undefined : 'i-lucide-chevrons-up-down',
+            }"
+            :label="user.name"
+            color="neutral"
+            variant="ghost"
+            block
+            :square="collapsed"
+            class="data-[state=open]:bg-elevated"
+            :ui="{
+              trailingIcon: 'text-dimmed',
+            }"
+          />
+        </UDropdownMenu>
       </template>
     </UDashboardSidebar>
 
