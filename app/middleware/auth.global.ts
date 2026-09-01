@@ -1,10 +1,8 @@
 export default defineNuxtRouteMiddleware((to) => {
   const auth = useAuthStore()
-  console.log(to)
-  console.log('middleware auth triggered')
 
   if (to.path === '/auth') {
-    if (auth.isAuthenticated()) {
+    if (auth.isAuthenticated) {
       return navigateTo('/card')
     }
 
@@ -15,7 +13,7 @@ export default defineNuxtRouteMiddleware((to) => {
     return
   }
 
-  if (!auth.isAuthenticated()) {
+  if (!auth.isAuthenticated) {
     return navigateTo('/auth')
   }
 })

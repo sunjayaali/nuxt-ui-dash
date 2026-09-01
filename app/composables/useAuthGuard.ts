@@ -2,7 +2,7 @@ export default function () {
   const auth = useAuthStore()
 
   watch(
-    () => auth.isAuthenticated(),
+    () => auth.isAuthenticated,
     (isAuthenticated) => {
       if (!isAuthenticated) {
         navigateTo('/auth')

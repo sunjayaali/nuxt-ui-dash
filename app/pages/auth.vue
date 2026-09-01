@@ -5,6 +5,10 @@ import * as z from 'zod'
 definePageMeta({
   layout: 'auth',
 })
+useHead({
+  title: 'Login',
+})
+
 const toast = useToast()
 const auth = useAuthStore()
 
@@ -57,11 +61,7 @@ const schema = z.object({
 type Schema = z.output<typeof schema>
 
 async function onSubmit(payload: FormSubmitEvent<Schema>) {
-  auth.login({
-    id: 1,
-    name: 'John Doe',
-    email: payload.data.email,
-  })
+  auth.login()
 }
 </script>
 

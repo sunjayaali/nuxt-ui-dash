@@ -4,6 +4,8 @@ import type { DropdownMenuItem, NavigationMenuItem } from '@nuxt/ui'
 const auth = useAuthStore()
 useAuthGuard()
 
+const user = auth.user!
+
 const links = [
   [
     {
@@ -64,19 +66,19 @@ const links = [
   ],
 ] satisfies NavigationMenuItem[][]
 
-const user = ref({
-  name: auth.user?.name,
-  avatar: {
-    src: 'https://picsum.photos/seed/picsum/200/300',
-    alt: auth.user?.name ?? '',
-  },
-})
+// const user = ref({
+//   name: auth.user?.name,
+//   avatar: {
+//     src: 'https://picsum.photos/seed/picsum/200/300',
+//     alt: auth.user?.name ?? '',
+//   },
+// })
 const dropdownItems = ref<DropdownMenuItem[][]>([
   [
     {
-      label: 'Benjamin',
+      label: user.name,
       avatar: {
-        src: 'https://github.com/benjamincanac.png',
+        src: 'https://picsum.photos/seed/picsum/200/300',
         loading: 'lazy',
       },
       type: 'label',
@@ -132,6 +134,9 @@ const dropdownItems = ref<DropdownMenuItem[][]>([
             v-bind="{
               ...user,
               trailingIcon: collapsed ? undefined : 'i-lucide-chevrons-up-down',
+            }"
+            :avatar="{
+              src: 'https://picsum.photos/seed/picsum/200/300',
             }"
             :label="user.name"
             color="neutral"

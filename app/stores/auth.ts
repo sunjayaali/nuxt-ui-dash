@@ -1,24 +1,19 @@
-interface User {
-  id: number
-  name: string
-  email: string
-}
+import type { User } from '~/types/user'
 
 export const useAuthStore = defineStore('auth', () => {
-  const user = useCookie<User | null>('user', {
-    default: () => null,
-  })
+  const { $authService } = useNuxtApp()
 
-  function login(userData: User) {
-    user.value = userData
+  const user = useCookie<User | null>('auth_user')
+
+  const isAuthenticated = computed(() => user.value !== null)
+
+  async function login() {
+    user.value = await $authService.login()
   }
 
-  function logout() {
+  async function logout() {
+    await $authService.logout()
     user.value = null
-  }
-
-  function isAuthenticated() {
-    return user.value !== null
   }
 
   return {
