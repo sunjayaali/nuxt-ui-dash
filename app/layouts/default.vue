@@ -49,6 +49,36 @@ const links = [
         },
       ],
     },
+    {
+      label: 'Charts',
+      defaultOpen: true,
+      children: [
+        {
+          label: 'Overview',
+          to: '/charts',
+        },
+        {
+          label: 'Area Chart',
+          to: '/area-chart',
+        },
+        {
+          label: 'Bar Chart',
+          to: '/bar-chart',
+        },
+        {
+          label: 'Line Chart',
+          to: '/line-chart',
+        },
+        {
+          label: 'Donut Chart',
+          to: '/donut-chart',
+        },
+        {
+          label: 'Topo Map',
+          to: '/topo-map',
+        },
+      ],
+    },
   ],
   [
     {
@@ -160,15 +190,19 @@ const dropdownItems = ref<DropdownMenuItem[][]>([
     </UDashboardSidebar>
 
     <UDashboardPanel>
-      <UDashboardNavbar>
-        <template #leading>
-          <UDashboardSidebarCollapse />
-        </template>
+      <template #header>
+        <UDashboardNavbar>
+          <template #leading>
+            <UDashboardSidebarCollapse />
+          </template>
 
-        <template #trailing> trailing </template>
-      </UDashboardNavbar>
+          <template #trailing> trailing </template>
+        </UDashboardNavbar>
+      </template>
 
-      <slot />
+      <template #body>
+        <slot />
+      </template>
     </UDashboardPanel>
   </UDashboardGroup>
 </template>
