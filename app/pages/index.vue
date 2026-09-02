@@ -1,6 +1,5 @@
 <script setup lang="ts">
 const test = useTestStore()
-const value = ref(3)
 </script>
 
 <template>
@@ -16,13 +15,13 @@ const value = ref(3)
           label="Click Me"
           :loading="test.loading"
           @click="test.hello()"
-        ></UButton>
+        />
         <!-- <p>
           {{ test.message }}
         </p> -->
 
         <UPageCard>
-          <UForm :state="test" @submit="test.hello" class="space-y-4">
+          <UForm :state="test" class="space-y-4" @submit="test.hello">
             <UFormField label="Title">
               <UInput
                 v-model="test.title"
@@ -67,7 +66,6 @@ const value = ref(3)
 
                     <UProgress v-model="value"></UProgress>
 
-
                   </div>
                 </template> -->
 
@@ -79,7 +77,7 @@ const value = ref(3)
                 <template #files-top> files-top </template>
                 <template #files-bottom> files-bottom </template>
                 <!-- <template #file> file </template> -->
-                <template #file-leading="{ file }">
+                <template #file-leading="{}">
                   <div class="relative flex size-8 items-center justify-center">
                     <UIcon
                       name="i-lucide-loader-circle"

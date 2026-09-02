@@ -60,7 +60,7 @@ const schema = z.object({
 
 type Schema = z.output<typeof schema>
 
-async function onSubmit(payload: FormSubmitEvent<Schema>) {
+async function onSubmit(_: FormSubmitEvent<Schema>) {
   auth.login()
 }
 </script>

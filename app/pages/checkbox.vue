@@ -7,13 +7,9 @@ const value = ref(true)
     <UPage>
       <UPageBody>
         <UCheckbox v-model="value">
-          <template #label>
-            Slot Label
-          </template>
+          <template #label> Slot Label </template>
 
-          <template #description>
-            Slot Description
-          </template>
+          <template #description> Slot Description </template>
         </UCheckbox>
       </UPageBody>
     </UPage>
